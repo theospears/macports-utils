@@ -1,8 +1,8 @@
-= macports-utils
+# macports-utils
 
 A collection of scripts to help with using MacPorts
 
-== port-install-from.rb ==
+## port-install-from.rb
 
 This script installs all packages present on another machine on the local
 machine. Useful if you develop on multiple machines to make sure the
