@@ -3,6 +3,13 @@
 def main()
 	if ARGV.empty? then
 		puts "Usage ./port-install-from.rb hostname"
+		puts ""
+		puts "Installs all macports packages present on hostname on the local machine"
+		puts ""
+		puts "It is highly recommended to use this script in conjunction with shared"
+		puts "archives so you don't have to compile everything twice. See the"
+		puts "instructions at:"
+		puts "  https://trac.macports.org/wiki/howto/ShareArchives2"
 		exit -1
 	end
 
