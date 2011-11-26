@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
-def main()
-	if ARGV.empty? then
+def main
+	if ARGV.empty?
 		puts "Usage ./port-install-from.rb hostname"
 		puts ""
 		puts "Installs all macports packages present on hostname on the local machine"
@@ -21,8 +21,8 @@ def main()
 
 	to_install = packages_to_install(local_packages, remote_packages)
 
-	if not to_install.empty? then
-		install_line = to_install.map { |name, version| "#{name}@#{version}" }.join(" ")
+	if ! to_install.empty?
+		install_line = to_install.map {|name, version| "#{name}@#{version}" }.join(" ")
 		puts "Installing " + install_line
 		system 'sudo sh -c "port selfupdate && port install ' + install_line + '"'
 	else
@@ -34,7 +34,7 @@ end
 def parse_package_list(package_list)
 	parsed_packages = {}
 	package_list.each_line do |line| 
-		if line.include? "(active)" then
+		if line.include? "(active)"
 			line.strip!
 			package, version = line.split
 			version.slice!(0)
@@ -49,11 +49,11 @@ end
 def packages_to_install(local_packages, remote_packages)
 	to_install = {}
 	remote_packages.each do |name, remote_version|
-		if local_packages.has_key? name then
+		if local_packages.has_key? name
 			local_version = local_packages[name]
-			if remote_version.newer_than? local_version then
+			if remote_version.newer_than? local_version
 				to_install[name] = remote_version
-			elsif local_version.newer_than? version then
+			elsif local_version.newer_than? version
 				puts "Package #{name} local version (#{local_version}) is newer than remote version (#{version})"
 			end
 		else
