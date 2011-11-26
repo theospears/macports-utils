@@ -53,8 +53,8 @@ def packages_to_install(local_packages, remote_packages)
 			local_version = local_packages[name]
 			if remote_version.newer_than? local_version
 				to_install[name] = remote_version
-			elsif local_version.newer_than? version
-				puts "Package #{name} local version (#{local_version}) is newer than remote version (#{version})"
+			elsif local_version.newer_than? remote_version
+				puts "Package #{name} local version (#{local_version}) is newer than remote version (#{remote_version})"
 			end
 		else
 			to_install[name] = remote_version
